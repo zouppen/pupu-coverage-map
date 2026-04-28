@@ -11,6 +11,13 @@ station.
 
 This project was created with AI assistance.
 
+## Repository Layout
+
+```txt
+frontend/  Vite React frontend
+backend/   Backend application, to be added
+```
+
 ## Tech Stack
 
 - Vite
@@ -25,12 +32,14 @@ This project was created with AI assistance.
 Install dependencies:
 
 ```bash
+cd frontend
 npm install
 ```
 
 Start the development server:
 
 ```bash
+cd frontend
 npm run dev
 ```
 
@@ -45,12 +54,14 @@ http://localhost:5173/
 Run a production build:
 
 ```bash
+cd frontend
 npm run build
 ```
 
 Run linting:
 
 ```bash
+cd frontend
 npm run lint
 ```
 
@@ -59,7 +70,7 @@ npm run lint
 Station names and colors are configured in:
 
 ```txt
-src/config/stations.ts
+frontend/src/config/stations.ts
 ```
 
 The backend endpoint is also currently configured there:
