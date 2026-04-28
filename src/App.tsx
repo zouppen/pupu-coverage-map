@@ -25,6 +25,11 @@ type ListenerFields = {
   feedback: string;
 };
 
+type SubmitStatus = {
+  tone: "error" | "success";
+  message: string;
+};
+
 function currentLocalDateTime() {
   const now = new Date();
   now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
@@ -84,9 +89,10 @@ export function App() {
   });
   const [reports, setReports] = useState<ReceptionReport[]>([]);
   const [draft, setDraft] = useState<DraftReport | null>(null);
-  const [status, setStatus] = useState<string>("");
+  const [status, setStatus] = useState<SubmitStatus | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [lastObservedAt, setLastObservedAt] = useState(currentLocalDateTime());
+  const isSubmitDisabled = isSubmitting || draft !== null;
 
   const payload = useMemo<ListenerSubmission>(
     () => ({
@@ -112,7 +118,7 @@ export function App() {
       observedAt: lastObservedAt,
       comment: "",
     });
-    setStatus("");
+    setStatus(null);
   }
 
   function addDraft() {
@@ -130,7 +136,7 @@ export function App() {
     setReports((current) => [...current, report]);
     setLastObservedAt(draft.observedAt);
     setDraft(null);
-    setStatus("");
+    setStatus(null);
   }
 
   function updateDraftHeard(stationId: StationId, checked: boolean) {
@@ -148,11 +154,14 @@ export function App() {
   }
 
   async function submitReports() {
-    setStatus("");
+    setStatus(null);
 
     const parsed = submissionSchema.safeParse(payload);
     if (!parsed.success) {
-      setStatus(parsed.error.issues[0]?.message ?? "Tarkista tiedot.");
+      setStatus({
+        tone: "error",
+        message: parsed.error.issues[0]?.message ?? "Tarkista tiedot.",
+      });
       return;
     }
 
@@ -170,11 +179,14 @@ export function App() {
         throw new Error(`Lähetys epäonnistui (${response.status})`);
       }
 
-      setStatus("Havainnot lähetetty.");
+      setStatus({ tone: "success", message: "Havainnot lähetetty." });
       setReports([]);
       setListener({ nick: "", email: "", feedback: "" });
     } catch (error) {
-      setStatus(error instanceof Error ? error.message : "Lähetys epäonnistui.");
+      setStatus({
+        tone: "error",
+        message: error instanceof Error ? error.message : "Lähetys epäonnistui.",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -350,7 +362,23 @@ export function App() {
           </label>
         </section>
 
-        <button type="button" className="submit-button" onClick={submitReports} disabled={isSubmitting}>
+        {status ? (
+          <p className={`status ${status.tone}`} role={status.tone === "error" ? "alert" : "status"}>
+            <Mail size={17} aria-hidden="true" />
+            {status.message}
+          </p>
+        ) : null}
+
+        {draft ? (
+          <p className="submit-hint">Lisää tai peruuta keskeneräinen piste ennen lähettämistä.</p>
+        ) : null}
+
+        <button
+          type="button"
+          className="submit-button"
+          onClick={submitReports}
+          disabled={isSubmitDisabled}
+        >
           {isSubmitting ? (
             "Lähetetään..."
           ) : (
@@ -360,13 +388,6 @@ export function App() {
             </>
           )}
         </button>
-
-        {status ? (
-          <p className="status" role="status">
-            <Mail size={17} aria-hidden="true" />
-            {status}
-          </p>
-        ) : null}
       </aside>
     </main>
   );
