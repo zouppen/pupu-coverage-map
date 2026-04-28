@@ -2,11 +2,9 @@ import { useMemo, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import { Mail, MapPin, Plus, Radio, Send, Trash2 } from "lucide-react";
-import { reportEndpoint, stations } from "./config/stations";
+import { mapDefaults, reportEndpoint, stations } from "./config/stations";
 import type { HeardMap, ListenerSubmission, ReceptionReport, StationId } from "./types";
 import { submissionSchema } from "./validation";
-
-const initialCenter: [number, number] = [60.1699, 24.9384];
 
 const emptyHeard: HeardMap = {
   a: false,
@@ -185,7 +183,12 @@ export function App() {
   return (
     <main className="app-shell">
       <section className="map-area" aria-label="Kuuluvuuskartta">
-        <MapContainer center={initialCenter} zoom={8} scrollWheelZoom className="map">
+        <MapContainer
+          center={[mapDefaults.center.lat, mapDefaults.center.lng]}
+          zoom={mapDefaults.initialZoom}
+          scrollWheelZoom
+          className="map"
+        >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

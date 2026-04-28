@@ -11,4 +11,12 @@ export const stations = [
   },
 ] as const;
 
+export const mapDefaults = {
+  center: {
+    lat: 62.2426,
+    lng: 25.7473,
+  },
+  initialZoom: 11,
+} as const;
+
 export const reportEndpoint = "/api/reports";
