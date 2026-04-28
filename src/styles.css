@@ -1,0 +1,294 @@
+:root {
+  color: #172033;
+  background: #f3f4f1;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  align-items: center;
+  background: #14532d;
+  border: 0;
+  border-radius: 7px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 700;
+  gap: 0.45rem;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.65rem 0.9rem;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+}
+
+button.secondary {
+  background: #e7e9df;
+  color: #172033;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  min-height: 100vh;
+}
+
+.map-area {
+  min-height: 100vh;
+}
+
+.map {
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.side-panel {
+  background: #fbfbf7;
+  border-left: 1px solid #d8dccf;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 100vh;
+  overflow: auto;
+  padding: 1.25rem;
+}
+
+.panel-header {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.panel-header svg {
+  color: #14532d;
+  flex: 0 0 auto;
+  margin-top: 0.35rem;
+}
+
+.eyebrow {
+  color: #52606d;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin: 0 0 0.25rem;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 1.7rem;
+  line-height: 1.15;
+  margin-bottom: 0;
+}
+
+h2 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.panel-section {
+  border-top: 1px solid #e1e4d9;
+  padding-top: 1rem;
+}
+
+.draft-form,
+.field,
+.check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.field span {
+  font-weight: 700;
+}
+
+.field small,
+.empty-state,
+.report-list span {
+  color: #667085;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="datetime-local"],
+textarea {
+  background: #ffffff;
+  border: 1px solid #cbd2c0;
+  border-radius: 7px;
+  color: #172033;
+  min-height: 2.55rem;
+  padding: 0.65rem 0.75rem;
+  width: 100%;
+}
+
+textarea {
+  min-height: auto;
+  resize: vertical;
+}
+
+.location-row,
+.status {
+  align-items: center;
+  color: #364152;
+  display: flex;
+  gap: 0.45rem;
+}
+
+.check-row {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  font-weight: 650;
+  gap: 0.55rem;
+}
+
+.check-row input {
+  height: 1.05rem;
+  width: 1.05rem;
+}
+
+.station-dot {
+  border-radius: 999px;
+  display: inline-block;
+  height: 0.75rem;
+  width: 0.75rem;
+}
+
+.button-row {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.report-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.report-list li {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e1e4d9;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem;
+}
+
+.report-list li div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.icon-button {
+  background: #f0f2ea;
+  color: #293241;
+  flex: 0 0 2.25rem;
+  min-height: 2.25rem;
+  padding: 0;
+  width: 2.25rem;
+}
+
+.submit-button {
+  min-height: 2.8rem;
+  width: 100%;
+}
+
+.status {
+  background: #ecfdf3;
+  border: 1px solid #b6e6c7;
+  border-radius: 8px;
+  color: #14532d;
+  margin: 0;
+  padding: 0.75rem;
+}
+
+.coverage-marker {
+  background: transparent;
+  border: 0;
+}
+
+.coverage-marker span {
+  align-items: center;
+  border: 2px solid #ffffff;
+  border-radius: 999px 999px 999px 0;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 22%);
+  color: #ffffff;
+  display: flex;
+  font-size: 0.75rem;
+  font-weight: 900;
+  height: 34px;
+  justify-content: center;
+  transform: rotate(-45deg);
+  width: 34px;
+}
+
+.coverage-marker span::first-letter {
+  transform: rotate(45deg);
+}
+
+@media (max-width: 880px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .map-area,
+  .map {
+    min-height: 52vh;
+  }
+
+  .side-panel {
+    border-left: 0;
+    border-top: 1px solid #d8dccf;
+    max-height: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .side-panel {
+    padding: 1rem;
+  }
+
+  .button-row {
+    grid-template-columns: 1fr;
+  }
+}
