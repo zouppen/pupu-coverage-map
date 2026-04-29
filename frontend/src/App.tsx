@@ -15,6 +15,7 @@ type DraftReport = {
   lat: number;
   lng: number;
   heard: HeardMap;
+  shadowArea: boolean;
   observedAt: string;
   comment: string;
 };
@@ -102,6 +103,8 @@ export function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [lastObservedAt, setLastObservedAt] = useState(currentLocalDateTime());
   const isSubmitDisabled = isSubmitting || draft !== null;
+  const draftHasHeardStation = draft ? Object.values(draft.heard).some(Boolean) : false;
+  const canAddDraft = draft ? draftHasHeardStation || draft.shadowArea : false;
 
   useEffect(() => {
     document.title = title;
@@ -147,6 +150,7 @@ export function App() {
       lat,
       lng,
       heard: { ...emptyHeard },
+      shadowArea: false,
       observedAt: lastObservedAt,
       comment: "",
     });
@@ -154,7 +158,7 @@ export function App() {
   }
 
   function addDraft() {
-    if (!draft) return;
+    if (!draft || !canAddDraft) return;
 
     const report: ReceptionReport = {
       id: createReportId(),
@@ -172,17 +176,24 @@ export function App() {
   }
 
   function updateDraftHeard(stationId: StationId, checked: boolean) {
-    setDraft((current) =>
-      current
-        ? {
-            ...current,
-            heard: {
-              ...current.heard,
-              [stationId]: checked,
-            },
-          }
-        : current,
-    );
+    setDraft((current) => {
+      if (!current) return current;
+
+      const heard = {
+        ...current.heard,
+        [stationId]: checked,
+      };
+
+      return {
+        ...current,
+        heard,
+        shadowArea: Object.values(heard).some(Boolean) ? false : current.shadowArea,
+      };
+    });
+  }
+
+  function updateDraftShadowArea(checked: boolean) {
+    setDraft((current) => (current ? { ...current, shadowArea: checked } : current));
   }
 
   async function submitReports() {
@@ -301,7 +312,20 @@ export function App() {
                     {station.name}
                   </label>
                 ))}
+                {!draftHasHeardStation ? (
+                  <label className="check-row shadow-area-row">
+                    <input
+                      type="checkbox"
+                      checked={draft.shadowArea}
+                      onChange={(event) => updateDraftShadowArea(event.target.checked)}
+                    />
+                    <span className="station-dot" style={{ background: "gray" }} /> Ei kumpikaan
+                  </label>
+                ) : null}
               </div>
+              {!canAddDraft ? (
+                <p className="submit-hint">Valitse kaikki kuuluvat asemat tai merkitse piste katvealueeksi.</p>
+              ) : null}
 
               <label className="field">
                 <span>Päivä ja kellonaika</span>
@@ -334,7 +358,7 @@ export function App() {
                 <button type="button" className="secondary" onClick={() => setDraft(null)}>
                   Peruuta
                 </button>
-                <button type="button" onClick={addDraft}>
+                <button type="button" onClick={addDraft} disabled={!canAddDraft}>
                   <Plus size={18} aria-hidden="true" />
                   Lisää piste
                 </button>
@@ -459,7 +483,7 @@ function formatHeard(heard: HeardMap) {
   const names = stations.filter((station) => heard[station.id]).map((station) => station.name);
   if (names.length === 2) return "Molemmat kuuluivat";
   if (names.length === 0) return "Katvepiste";
-  return `${names.join(", ")} kuului`;
+  return `Vain ${names.join(", ")} kuului`;
 }
 
 function formatDateTime(value: string) {
