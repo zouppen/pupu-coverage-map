@@ -98,6 +98,23 @@ export function App() {
     document.title = title;
   }, []);
 
+  useEffect(() => {
+    if (reports.length === 0 && draft === null) {
+      return;
+    }
+
+    function warnBeforeUnload(event: BeforeUnloadEvent) {
+      event.preventDefault();
+      event.returnValue = "";
+    }
+
+    window.addEventListener("beforeunload", warnBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", warnBeforeUnload);
+    };
+  }, [draft, reports.length]);
+
   const payload = useMemo<ListenerSubmission>(
     () => ({
       project,
