@@ -234,6 +234,7 @@ export function App() {
           <div>
             <p className="eyebrow">Pupu Coverage Map</p>
             <h1>Kuuluvuushavainnot</h1>
+	    <p>Täällä voit raportoida asemamme kuuluvuuden yhdessä tai useammassa paikassa. Voit myös raportoida katvealueen.</p>
           </div>
           <Radio aria-hidden="true" />
         </header>
