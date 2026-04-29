@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import { Mail, MapPin, Plus, Radio, Send, Trash2 } from "lucide-react";
-import { mapDefaults, reportEndpoint, stations } from "./config/stations";
+import { mapDefaults, project, reportEndpoint, stations } from "./config/stations";
 import type { HeardMap, ListenerSubmission, ReceptionReport, StationId } from "./types";
 import { submissionSchema } from "./validation";
 
@@ -96,6 +96,7 @@ export function App() {
 
   const payload = useMemo<ListenerSubmission>(
     () => ({
+      project,
       nick: listener.nick.trim(),
       email: listener.email.trim(),
       feedback: listener.feedback.trim() || undefined,

@@ -19,4 +19,6 @@ export const mapDefaults = {
   initialZoom: 11,
 } as const;
 
+export const project = "pupu-coverage-map";
+
 export const reportEndpoint = "/api/reports";

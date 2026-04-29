@@ -15,7 +15,7 @@ This project was created with AI assistance.
 
 ```txt
 frontend/  Vite React frontend
-backend/   Backend application, to be added
+backend/   Plain PHP backend and PostgreSQL migrations
 ```
 
 ## Tech Stack
@@ -26,6 +26,8 @@ backend/   Backend application, to be added
 - React-Leaflet
 - Leaflet
 - Zod
+- PHP
+- PostgreSQL
 
 ## Development
 
@@ -79,6 +81,12 @@ The backend endpoint is also currently configured there:
 export const reportEndpoint = "/api/reports";
 ```
 
+The submitted project identifier is configured in the same file:
+
+```ts
+export const project = "pupu-coverage-map";
+```
+
 ## Submission Format
 
 The frontend sends JSON to the configured backend endpoint.
@@ -87,6 +95,7 @@ Example payload:
 
 ```json
 {
+  "project": "pupu-coverage-map",
   "nick": "OH2ABC",
   "email": "listener@example.com",
   "feedback": "Good reception near the summer cottage.",

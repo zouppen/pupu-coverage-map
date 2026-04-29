@@ -12,6 +12,7 @@ export type ReceptionReport = {
 };
 
 export type ListenerSubmission = {
+  project: string;
   nick: string;
   email: string;
   feedback?: string;

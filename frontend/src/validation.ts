@@ -12,6 +12,7 @@ export const reportSchema = z.object({
 });
 
 export const submissionSchema = z.object({
+  project: z.string().trim().min(1, "Projektin tunniste puuttuu."),
   nick: z.string().trim().min(1, "Nimimerkki tai kutsu on pakollinen."),
   email: z.string().trim().email("Anna kelvollinen sähköpostiosoite."),
   feedback: z.string().trim().optional(),
