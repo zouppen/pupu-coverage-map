@@ -265,10 +265,11 @@ export function App() {
           {draft ? (
             <div className="draft-form">
               <div className="location-row">
-                <MapPin size={18} aria-hidden="true" />
+                Pisteessä <MapPin size={18} aria-hidden="true" />
                 <span>
                   {draft.lat.toFixed(5)}, {draft.lng.toFixed(5)}
                 </span>
+                kuului:
               </div>
 
               <div className="check-list">
@@ -280,7 +281,7 @@ export function App() {
                       onChange={(event) => updateDraftHeard(station.id, event.target.checked)}
                     />
                     <span className="station-dot" style={{ background: station.color }} />
-                    {station.name} kuului
+                    {station.name}
                   </label>
                 ))}
               </div>
@@ -427,7 +428,9 @@ export function App() {
 
 function formatHeard(heard: HeardMap) {
   const names = stations.filter((station) => heard[station.id]).map((station) => station.name);
-  return names.length > 0 ? `${names.join(" ja ")} kuului` : "Katvepiste";
+  if (names.length === 2) return "Molemmat kuuluivat";
+  if (names.length === 0) return "Katvepiste";
+  return `${names.join(", ")} kuului`;
 }
 
 function formatDateTime(value: string) {
