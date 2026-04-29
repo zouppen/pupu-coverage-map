@@ -413,14 +413,16 @@ export function App() {
           )}
         </button>
 
-        <a
-          className="source-link"
-          href="https://github.com/zouppen/pupu-coverage-map"
-          rel="noreferrer"
-          target="_blank"
-        >
-          Lähdekoodit GitHubissa
-        </a>
+        <nav className="footer-links" aria-label="Lisätiedot">
+          <a href="privacy.html">Tietosuojaseloste</a>
+          <a
+            href="https://github.com/zouppen/pupu-coverage-map"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Lähdekoodit GitHubissa
+          </a>
+        </nav>
       </aside>
     </main>
   );
