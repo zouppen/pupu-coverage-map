@@ -201,7 +201,7 @@ export function App() {
         throw new Error(`Lähetys epäonnistui (${response.status})`);
       }
 
-      setStatus({ tone: "success", message: "Havainnot lähetetty." });
+      setStatus({ tone: "success", message: "Havainnot lähetetty. Kiitos!" });
       setReports([]);
       setListener({ nick: "", email: "", feedback: "" });
     } catch (error) {
