@@ -81,12 +81,14 @@ This file is ignored by Git. Use the example file as a starting point:
 cp frontend/public/config.example.js frontend/public/config.js
 ```
 
-The runtime config contains station names and colors, the map default view, the backend
-endpoint, and the submitted project identifier:
+The runtime config contains the page title, logo path, station names and colors, the map
+default view, the backend endpoint, and the submitted project identifier:
 
 ```js
 window.PUPU_COVERAGE_CONFIG = {
   project: "pupu-coverage-map",
+  title: "Kuuluvuushavainnot",
+  logoUrl: "/assets/logo.example.svg",
   reportEndpoint: "/api/reports",
   stations: [],
   mapDefaults: {}

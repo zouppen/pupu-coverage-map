@@ -2,6 +2,8 @@ import type { StationId } from "../types";
 
 export type AppConfig = {
   project: string;
+  title: string;
+  logoUrl: string;
   reportEndpoint: string;
   stations: Array<{
     id: StationId;
@@ -24,7 +26,7 @@ declare global {
 }
 
 export const appConfig = readRuntimeConfig();
-export const { mapDefaults, project, reportEndpoint, stations } = appConfig;
+export const { logoUrl, mapDefaults, project, reportEndpoint, stations, title } = appConfig;
 
 function readRuntimeConfig(): AppConfig {
   const config = window.PUPU_COVERAGE_CONFIG;
@@ -40,6 +42,8 @@ function readRuntimeConfig(): AppConfig {
 
 function validateConfig(config: AppConfig) {
   requireNonEmptyString(config.project, "project");
+  requireNonEmptyString(config.title, "title");
+  requireNonEmptyString(config.logoUrl, "logoUrl");
   requireNonEmptyString(config.reportEndpoint, "reportEndpoint");
 
   if (!Array.isArray(config.stations) || config.stations.length !== 2) {
