@@ -392,6 +392,7 @@ export function App() {
               onChange={(event) => setListener({ ...listener, email: event.target.value })}
               required
             />
+            <small>Jos havaitset jotakin yllättävää, saatamme kysyä lisää sähköpostitse. Osoitetta säilötään enimmillään vuoden ajan.</small>
           </label>
           <label className="field">
             <span>Radiovastaanottimen malli</span>
