@@ -237,6 +237,13 @@ export function App() {
 
   return (
     <main className="app-shell">
+      <header className="intro-panel mobile-intro">
+        <img className="station-logo" src={logoUrl} alt="" />
+        <h1>{title}</h1>
+        <p>Täällä voit raportoida asemamme kuuluvuuden yhdessä tai useammassa paikassa. Voit myös raportoida katvealueen.</p>
+        <p>Huom! Muutokset pyyhkiytyvät, jos lataat sivun uudelleen, eli raportoidessasi paljon sijainteja, kannattaa tehdä raportti muutamassa osassa.</p>
+      </header>
+
       <section className="map-area" aria-label="Kuuluvuuskartta">
         <MapContainer
           center={[mapDefaults.center.lat, mapDefaults.center.lng]}
@@ -279,13 +286,11 @@ export function App() {
       </section>
 
       <aside className="side-panel">
-        <header className="panel-header">
-          <div>
-            <img className="station-logo" src={logoUrl} alt="" />
-            <h1>{title}</h1>
-            <p>Täällä voit raportoida asemamme kuuluvuuden yhdessä tai useammassa paikassa. Voit myös raportoida katvealueen.</p>
-            <p>Huom! Muutokset pyyhkiytyvät, jos lataat sivun uudelleen, eli raportoidessasi paljon sijainteja, kannattaa tehdä raportti muutamassa osassa.</p>
-          </div>
+        <header className="intro-panel desktop-intro">
+          <img className="station-logo" src={logoUrl} alt="" />
+          <h1>{title}</h1>
+          <p>Täällä voit raportoida asemamme kuuluvuuden yhdessä tai useammassa paikassa. Voit myös raportoida katvealueen.</p>
+          <p>Huom! Muutokset pyyhkiytyvät, jos lataat sivun uudelleen, eli raportoidessasi paljon sijainteja, kannattaa tehdä raportti muutamassa osassa.</p>
         </header>
 
         <section className="panel-section">
