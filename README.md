@@ -106,6 +106,7 @@ Example payload:
   "project": "pupu-coverage-map",
   "nick": "OH2ABC",
   "email": "listener@example.com",
+  "receiver": "Car radio, Example Model 2012",
   "feedback": "Good reception near the summer cottage.",
   "reports": [
     {

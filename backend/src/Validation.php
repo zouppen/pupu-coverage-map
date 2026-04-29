@@ -15,6 +15,7 @@ final class Validator
      *   project: string,
      *   nick: string,
      *   email: string,
+     *   receiver: string|null,
      *   feedback: string|null,
      *   reports: list<array{
      *     lat: float,
@@ -44,6 +45,7 @@ final class Validator
             'project' => self::requiredString($payload, 'project', 100),
             'nick' => self::requiredString($payload, 'nick', 200),
             'email' => self::email($payload['email'] ?? null),
+            'receiver' => self::optionalString($payload, 'receiver', 500),
             'feedback' => self::optionalString($payload, 'feedback', 5000),
             'reports' => array_map([self::class, 'report'], array_values($reports)),
         ];

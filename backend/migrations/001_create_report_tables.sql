@@ -3,6 +3,7 @@ create table reception_reports (
   project text not null,
   nick text not null,
   email text not null,
+  receiver text,
   feedback text,
   created_at timestamptz not null default now()
 );
@@ -34,6 +35,7 @@ select
   r.project,
   r.nick,
   r.email,
+  r.receiver,
   r.feedback,
   r.created_at as submitted_at,
   e.lat,

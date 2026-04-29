@@ -15,6 +15,7 @@ export type ListenerSubmission = {
   project: string;
   nick: string;
   email: string;
+  receiver?: string;
   feedback?: string;
   reports: Omit<ReceptionReport, "id">[];
 };

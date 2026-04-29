@@ -17,6 +17,7 @@ final class ReportRepository
      *   project: string,
      *   nick: string,
      *   email: string,
+     *   receiver: string|null,
      *   feedback: string|null,
      *   reports: list<array{
      *     lat: float,
@@ -33,14 +34,15 @@ final class ReportRepository
 
         try {
             $insertSubmission = $this->db->prepare(
-                'insert into reception_reports (project, nick, email, feedback)
-                 values (:project, :nick, :email, :feedback)
+                'insert into reception_reports (project, nick, email, receiver, feedback)
+                 values (:project, :nick, :email, :receiver, :feedback)
                  returning id'
             );
             $insertSubmission->execute([
                 ':project' => $submission['project'],
                 ':nick' => $submission['nick'],
                 ':email' => $submission['email'],
+                ':receiver' => $submission['receiver'],
                 ':feedback' => $submission['feedback'],
             ]);
 

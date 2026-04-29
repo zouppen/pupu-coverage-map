@@ -150,6 +150,10 @@ textarea {
   resize: vertical;
 }
 
+label {
+  margin-top: 0.5em;
+}
+
 .location-row,
 .status {
   align-items: center;

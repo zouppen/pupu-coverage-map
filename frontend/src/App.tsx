@@ -22,6 +22,7 @@ type DraftReport = {
 type ListenerFields = {
   nick: string;
   email: string;
+  receiver: string;
   feedback: string;
 };
 
@@ -85,6 +86,7 @@ export function App() {
   const [listener, setListener] = useState<ListenerFields>({
     nick: "",
     email: "",
+    receiver: "",
     feedback: "",
   });
   const [reports, setReports] = useState<ReceptionReport[]>([]);
@@ -120,6 +122,7 @@ export function App() {
       project,
       nick: listener.nick.trim(),
       email: listener.email.trim(),
+      receiver: listener.receiver.trim() || undefined,
       feedback: listener.feedback.trim() || undefined,
       reports: reports.map((report) => ({
         lat: report.lat,
@@ -203,7 +206,7 @@ export function App() {
 
       setStatus({ tone: "success", message: "Havainnot lähetetty. Kiitos!" });
       setReports([]);
-      setListener({ nick: "", email: "", feedback: "" });
+      setListener({ nick: "", email: "", receiver: "", feedback: "" });
     } catch (error) {
       setStatus({
         tone: "error",
@@ -375,6 +378,15 @@ export function App() {
               onChange={(event) => setListener({ ...listener, email: event.target.value })}
               required
             />
+          </label>
+          <label className="field">
+            <span>Radiovastaanottimen malli</span>
+            <input
+              type="text"
+              value={listener.receiver}
+              onChange={(event) => setListener({ ...listener, receiver: event.target.value })}
+            />
+            <small>Jos vastaanotit integroidulla autoradiolla, voit merkitä tähän auton mallin ja vuosimallin.</small>
           </label>
           <label className="field">
             <span>Yleinen palaute asemalle</span>
