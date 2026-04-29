@@ -337,7 +337,7 @@ export function App() {
         <section className="panel-section">
           <h2>Lähettäjän tiedot</h2>
           <label className="field">
-            <span>Nimimerkki / radioamatöörikutsu</span>
+            <span>Nimi tai nimimerkki</span>
             <input
               type="text"
               value={listener.nick}
