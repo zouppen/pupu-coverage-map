@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import { Mail, MapPin, Plus, Radio, Send, Trash2 } from "lucide-react";
-import { mapDefaults, project, reportEndpoint, stations } from "./config/stations";
+import { mapDefaults, project, reportEndpoint, stations } from "./config/runtime";
 import type { HeardMap, ListenerSubmission, ReceptionReport, StationId } from "./types";
 import { submissionSchema } from "./validation";
 
@@ -390,6 +390,15 @@ export function App() {
             </>
           )}
         </button>
+
+        <a
+          className="source-link"
+          href="https://github.com/zouppen/pupu-coverage-map"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Lähdekoodit GitHubissa
+        </a>
       </aside>
     </main>
   );

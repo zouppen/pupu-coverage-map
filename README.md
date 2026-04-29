@@ -69,22 +69,28 @@ npm run lint
 
 ## Configuration
 
-Station names and colors are configured in:
+Frontend runtime configuration is loaded from:
 
 ```txt
-frontend/src/config/stations.ts
+frontend/public/config.js
 ```
 
-The backend endpoint is also currently configured there:
+This file is ignored by Git. Use the example file as a starting point:
 
-```ts
-export const reportEndpoint = "/api/reports";
+```bash
+cp frontend/public/config.example.js frontend/public/config.js
 ```
 
-The submitted project identifier is configured in the same file:
+The runtime config contains station names and colors, the map default view, the backend
+endpoint, and the submitted project identifier:
 
-```ts
-export const project = "pupu-coverage-map";
+```js
+window.PUPU_COVERAGE_CONFIG = {
+  project: "pupu-coverage-map",
+  reportEndpoint: "/api/reports",
+  stations: [],
+  mapDefaults: {}
+};
 ```
 
 ## Submission Format
