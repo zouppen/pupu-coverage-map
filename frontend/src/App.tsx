@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import { Mail, MapPin, Plus, Send, Trash2 } from "lucide-react";
@@ -93,6 +93,10 @@ export function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [lastObservedAt, setLastObservedAt] = useState(currentLocalDateTime());
   const isSubmitDisabled = isSubmitting || draft !== null;
+
+  useEffect(() => {
+    document.title = title;
+  }, []);
 
   const payload = useMemo<ListenerSubmission>(
     () => ({
