@@ -100,6 +100,12 @@ button.secondary {
   height: auto;
   max-width: min(16rem, 100%);
   object-fit: contain;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.station-logo-bg {
+  background-color: transparent;
 }
 
 h1,

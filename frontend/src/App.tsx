@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMapEvents } from "react-leaflet";
 import L from "leaflet";
 import { Mail, MapPin, Plus, Send, Trash2 } from "lucide-react";
-import { logoUrl, mapDefaults, project, reportEndpoint, stations, title } from "./config/runtime";
+import { logoUrl, mapDefaults, project, reportEndpoint, stations, themeColor, title } from "./config/runtime";
 import type { HeardMap, ListenerSubmission, ReceptionReport, StationId } from "./types";
 import { submissionSchema } from "./validation";
 
@@ -88,6 +88,19 @@ function ClickHandler({ onPick }: { onPick: (lat: number, lng: number) => void }
   });
 
   return null;
+}
+
+function IntroContent() {
+  return (
+    <>
+      <div className="station-logo-bg" style={{ backgroundColor: themeColor }}>
+        <img className="station-logo" src={logoUrl} alt="" />
+      </div>
+      <h1>{title}</h1>
+      <p>Täällä voit raportoida asemamme kuuluvuuden yhdessä tai useammassa paikassa. Voit myös raportoida katvealueen.</p>
+      <p>Huom! Muutokset pyyhkiytyvät, jos lataat sivun uudelleen, eli raportoidessasi paljon sijainteja, kannattaa tehdä raportti muutamassa osassa.</p>
+    </>
+  );
 }
 
 export function App() {
@@ -238,10 +251,7 @@ export function App() {
   return (
     <main className="app-shell">
       <header className="intro-panel mobile-intro">
-        <img className="station-logo" src={logoUrl} alt="" />
-        <h1>{title}</h1>
-        <p>Täällä voit raportoida asemamme kuuluvuuden yhdessä tai useammassa paikassa. Voit myös raportoida katvealueen.</p>
-        <p>Huom! Muutokset pyyhkiytyvät, jos lataat sivun uudelleen, eli raportoidessasi paljon sijainteja, kannattaa tehdä raportti muutamassa osassa.</p>
+        <IntroContent />
       </header>
 
       <section className="map-area" aria-label="Kuuluvuuskartta">
@@ -287,10 +297,7 @@ export function App() {
 
       <aside className="side-panel">
         <header className="intro-panel desktop-intro">
-          <img className="station-logo" src={logoUrl} alt="" />
-          <h1>{title}</h1>
-          <p>Täällä voit raportoida asemamme kuuluvuuden yhdessä tai useammassa paikassa. Voit myös raportoida katvealueen.</p>
-          <p>Huom! Muutokset pyyhkiytyvät, jos lataat sivun uudelleen, eli raportoidessasi paljon sijainteja, kannattaa tehdä raportti muutamassa osassa.</p>
+          <IntroContent />
         </header>
 
         <section className="panel-section">

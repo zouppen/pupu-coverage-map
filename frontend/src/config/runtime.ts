@@ -4,6 +4,7 @@ export type AppConfig = {
   project: string;
   title: string;
   logoUrl: string;
+  themeColor: string;
   reportEndpoint: string;
   stations: Array<{
     id: StationId;
@@ -26,7 +27,7 @@ declare global {
 }
 
 export const appConfig = readRuntimeConfig();
-export const { logoUrl, mapDefaults, project, reportEndpoint, stations, title } = appConfig;
+export const { logoUrl, mapDefaults, project, reportEndpoint, stations, themeColor, title } = appConfig;
 
 function readRuntimeConfig(): AppConfig {
   const config = window.PUPU_COVERAGE_CONFIG;
@@ -44,6 +45,7 @@ function validateConfig(config: AppConfig) {
   requireNonEmptyString(config.project, "project");
   requireNonEmptyString(config.title, "title");
   requireNonEmptyString(config.logoUrl, "logoUrl");
+  requireNonEmptyString(config.themeColor, "themeColor");
   requireNonEmptyString(config.reportEndpoint, "reportEndpoint");
 
   if (!Array.isArray(config.stations) || config.stations.length !== 2) {

@@ -2,6 +2,7 @@ window.PUPU_COVERAGE_CONFIG = {
   project: "pupu-coverage-map",
   title: "Kuuluvuushavainnot",
   logoUrl: "assets/logo.example.svg",
+  themeColor: "#b91c1c",
   reportEndpoint: "api/reports",
   stations: [
     {
