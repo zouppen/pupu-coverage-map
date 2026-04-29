@@ -88,8 +88,8 @@ default view, the backend endpoint, and the submitted project identifier:
 window.PUPU_COVERAGE_CONFIG = {
   project: "pupu-coverage-map",
   title: "Kuuluvuushavainnot",
-  logoUrl: "/assets/logo.example.svg",
-  reportEndpoint: "/api/reports",
+  logoUrl: "assets/logo.example.svg",
+  reportEndpoint: "api/reports",
   stations: [],
   mapDefaults: {}
 };

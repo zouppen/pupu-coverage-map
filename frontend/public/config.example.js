@@ -1,8 +1,8 @@
 window.PUPU_COVERAGE_CONFIG = {
   project: "pupu-coverage-map",
   title: "Kuuluvuushavainnot",
-  logoUrl: "/assets/logo.example.svg",
-  reportEndpoint: "/api/reports",
+  logoUrl: "assets/logo.example.svg",
+  reportEndpoint: "api/reports",
   stations: [
     {
       id: "a",
