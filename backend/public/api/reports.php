@@ -39,6 +39,6 @@ try {
 } catch (ValidationException $error) {
     Http::json(['error' => $error->getMessage()], 422);
 } catch (Throwable $error) {
-    error_log($error);
+    error_log((string) $error);
     Http::json(['error' => 'Internal server error'], 500);
 }
