@@ -33,7 +33,7 @@ final class ReportRepository
 
         try {
             $insertSubmission = $this->db->prepare(
-                'insert into submissions (project, nick, email, feedback)
+                'insert into reception_reports (project, nick, email, feedback)
                  values (:project, :nick, :email, :feedback)
                  returning id'
             );
@@ -47,14 +47,14 @@ final class ReportRepository
             $submissionId = (int) $insertSubmission->fetchColumn();
 
             $insertReport = $this->db->prepare(
-                'insert into reception_reports
-                   (submission_id, lat, lng, heard_a, heard_b, observed_at, comment)
+                'insert into reception_entries
+                   (report_id, lat, lng, heard_a, heard_b, observed_at, comment)
                  values
-                   (:submission_id, :lat, :lng, :heard_a, :heard_b, :observed_at, :comment)'
+                   (:report_id, :lat, :lng, :heard_a, :heard_b, :observed_at, :comment)'
             );
 
             foreach ($submission['reports'] as $report) {
-                $insertReport->bindValue(':submission_id', $submissionId, PDO::PARAM_INT);
+                $insertReport->bindValue(':report_id', $submissionId, PDO::PARAM_INT);
                 $insertReport->bindValue(':lat', $report['lat']);
                 $insertReport->bindValue(':lng', $report['lng']);
                 $insertReport->bindValue(':heard_a', $report['heard']['a'], PDO::PARAM_BOOL);

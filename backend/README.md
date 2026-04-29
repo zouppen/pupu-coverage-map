@@ -1,6 +1,6 @@
 # Backend
 
-Plain PHP backend for receiving reception report submissions and storing them in PostgreSQL.
+Plain PHP backend for receiving reception reports and storing them in PostgreSQL.
 
 ## Requirements
 
@@ -29,10 +29,10 @@ Apply the migration:
 psql pupu_coverage_map -f migrations/001_create_report_tables.sql
 ```
 
-The schema stores `project` on `submissions`. Individual rows in `reception_reports` refer to
-their submission and do not duplicate the project value.
+The schema stores `project` on `reception_reports`. Individual rows in `reception_entries`
+refer to their parent report and do not duplicate the project value.
 
-For Grafana, use `reception_reports_view`, which exposes `project`, `lat`, `lng`,
+For Grafana, use `reception_entries_view`, which exposes `project`, `lat`, `lng`,
 `observed_at`, and derived `heard_status` in one queryable relation.
 
 ## Endpoint
@@ -50,7 +50,7 @@ Successful response:
 }
 ```
 
-The `id` is the created submission ID.
+The `id` is the created reception report ID.
 
 ## Local Development
 
