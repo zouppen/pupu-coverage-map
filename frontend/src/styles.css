@@ -63,8 +63,14 @@ button.secondary {
 
 .map {
   height: 100%;
+  cursor: pointer;
   min-height: 100vh;
   width: 100%;
+}
+
+.map .leaflet-grab,
+.map .leaflet-interactive {
+  cursor: pointer;
 }
 
 .side-panel {
@@ -295,6 +301,26 @@ label {
 
 .coverage-marker span::first-letter {
   transform: rotate(45deg);
+}
+
+.draft-marker {
+  background: transparent;
+  border: 0;
+}
+
+.draft-marker span {
+  align-items: center;
+  background: #ffffff80;
+  border: 3px solid #ffc31080;
+  border-radius: 999px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 25%);
+  color: black;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 900;
+  height: 36px;
+  justify-content: center;
+  width: 36px;
 }
 
 @media (max-width: 880px) {

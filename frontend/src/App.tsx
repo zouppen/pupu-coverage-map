@@ -72,6 +72,13 @@ function makeMarkerIcon(report: ReceptionReport) {
   });
 }
 
+const draftMarkerIcon = L.divIcon({
+  className: "draft-marker",
+  html: "<span aria-hidden=\"true\">×</span>",
+  iconSize: [36, 36],
+  iconAnchor: [18, 18],
+});
+
 function ClickHandler({ onPick }: { onPick: (lat: number, lng: number) => void }) {
   useMapEvents({
     click(event) {
@@ -231,6 +238,13 @@ export function App() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <ClickHandler onPick={beginDraft} />
+          {draft ? (
+            <Marker
+              interactive={false}
+              position={[draft.lat, draft.lng]}
+              icon={draftMarkerIcon}
+            />
+          ) : null}
           {reports.map((report) => (
             <Marker
               key={report.id}
